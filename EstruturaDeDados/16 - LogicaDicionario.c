@@ -27,7 +27,6 @@ bool compararString(const char palavra1[], const char palavra2[]){
 int procurarStrings(const struct dicionario lingua[], const char procurar[],
                     const int numDePalavras) {
 
-    //bool compararString(const char palavra1[], const char palavra2[]);
     int i = 0;
     while (i < numDePalavras){
         if(compararString(procurar, lingua[i].palavra)){
@@ -45,27 +44,31 @@ int main(){
     
     
     char palavra[20] = {'\0'};
-    int resultadoPesquisa;
+    int resultadoPesquisa = 0;
 
-    const struct dicionario portugues[NUMERODEDEFINICOES] =
-       {{"Pão", "Feito à base de trigo"},
+     struct dicionario portugues[NUMERODEDEFINICOES] =
+      {{"Pão", "Feito à base de farinha"},
         {"Mortadela", "Feito à base de restos de carne"},
         {"Feijão", "Iguaria brasileira."},
-        {"Tropeiro", "Iguaria tropeira."},
+        {"Tropeiro", "Tipo de feijão."},
         {"Queijo", "Iguaria mineira."},
         {"Macarronada", "Iguaria italiana"},
         {"Pizza", "Outra iguaria italiana"}};
+        
+        
+   do{
+        printf("Insira uma palavra: ");
+        scanf("\n%s", palavra);
 
-    printf("Insira uma palavra: ");
-    scanf("%s", palavra);
+        resultadoPesquisa = procurarStrings(portugues, palavra, NUMERODEDEFINICOES);
 
-    resultadoPesquisa = procurarStrings(portugues, palavra, NUMERODEDEFINICOES);
-
-    if(resultadoPesquisa != -1){
-        printf("Palavra buscada: %s\nDefinição: %s\nPosição %d", portugues[resultadoPesquisa].palavra, portugues[resultadoPesquisa].definicao, resultadoPesquisa);
-    }
-    else{
-        printf("Palavra não encontrada!");
-    }
+            if (resultadoPesquisa != -1) {
+                printf("\nPalavra buscada: %s\nDefinição: %s\nPosição %d \n\n", portugues[resultadoPesquisa].palavra, portugues[resultadoPesquisa].definicao, resultadoPesquisa);
+            }
+            else {
+                printf("Palavra não encontrada!\n\n");
+            }
+   }while(true);
+  
     
 }
